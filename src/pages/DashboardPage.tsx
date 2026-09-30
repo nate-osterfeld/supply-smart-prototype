@@ -25,7 +25,7 @@ const auditRows: Array<{ timestamp: string; user: string; action: string; action
   { timestamp: '1 day ago', user: 'James Wilson', action: 'Check-Out', actionType: 'checkout', item: 'Sterile Gloves (Large) - Qty: 100' },
 ]
 
-export default function Dashboard() {
+export default function Dashboard({ onNavigate }: { onNavigate?: (screen: string) => void }) {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
       <header className="sticky top-0 z-50 border-b border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
@@ -102,7 +102,10 @@ export default function Dashboard() {
                 <p className="mt-1 text-sm text-amber-900 dark:text-amber-200">
                   Next week&apos;s schedule (17 Scheduled Jobs/Procedures) requires 23 supply kits; only 15 are currently available in stock.
                 </p>
-                <button className="mt-3 inline-flex h-9 items-center gap-2 rounded-md bg-amber-600 px-4 text-sm font-medium text-white hover:bg-amber-700">
+                <button 
+                  onClick={() => onNavigate?.('forecast')}
+                  className="mt-3 inline-flex h-9 items-center gap-2 rounded-md bg-amber-600 px-4 text-sm font-medium text-white hover:bg-amber-700"
+                >
                   View Schedule &amp; Forecast <ChevronRight className="size-4" />
                 </button>
               </div>
@@ -184,7 +187,10 @@ export default function Dashboard() {
                   ))}
                 </tbody>
               </table>
-              <button className="mt-4 flex w-full items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium text-blue-600 hover:bg-blue-50">
+              <button 
+                onClick={() => onNavigate?.('catalog')}
+                className="mt-4 flex w-full items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium text-blue-600 hover:bg-blue-50"
+              >
                 View Full Audit Log <ChevronRight className="size-4" />
               </button>
             </div>
